@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Poppins:ital,wght@0,500;1,400&display=swap");
+
+.row.content {
+  height: 550px;
+}
+
+.sidenav {
+  background-color: #fff;
+  height: 100% !important;
+}
+
+.logo {
+  color: #013cc6;
+  font-family: Poppins !important;
+  font-size: 24px !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  line-height: normal;
+  margin-top: 55px !important;
+}
+
+@media screen and (max-width: 767px) {
+  .row.content {
+    height: auto;
+  }
+}
+
+.navbar-inverse {
+  background-color: #242424;
+  border-color: #e6e6e6;
+}
+
+#myNavbar {
+  background-color: #f5f1f1 !important;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.nav li a {
+  color: #131313 !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  opacity: 0.65 !important;
+}
+
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 437px;
+}
+
+.nav li :hover {
+  color: #013cc6 !important;
+}
+.active:hover {
+  border-left: #013cc6 !important;
+  border: 1px solid #013cc6 !important ;
+}
+
+.Total-Dashboard {
+  width: 100% !important;
+}
+
+.Dashboard {
+  background: #f8f8f8;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.search-input-box {
+  height: 52px;
+}
+.search-icons {
+  position: relative;
+  top: 1px;
+  right: -21px;
+}
+
+.sales-information {
+  margin-top: 24px !important;
+}
+.form-label {
+  margin-bottom: 16px;
+}
+
+.table {
+  background-color: #fff;
+  margin-top: 40px;
+  max-width: 100%;
+  width: 97%;
+  margin-left: 15px;
+}
+
+.container-fluid {
+  overflow-x: hidden;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 65px;
+}
+
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
