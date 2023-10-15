@@ -1,0 +1,26 @@
+import AddNotes from "./Componet/AddNotes"
+import DataContext from "./Componet/Context/DataContext"
+import NotesContext from "./Componet/Context/NotesContext"
+import Saidebar from "./Componet/Saidebar"
+
+
+function App() {
+  
+
+  return (
+    <>
+      <div className='flex gap-5 '>
+			<Saidebar/>
+			<NotesContext>
+			<DataContext>
+			<div className='max-w-5xl flex-1 mx-auto py-5'>
+			<AddNotes/>
+		</div>
+				</DataContext>
+			</NotesContext>
+		</div>
+    </>
+  )
+}
+
+export default App
