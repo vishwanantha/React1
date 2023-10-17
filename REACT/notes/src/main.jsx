@@ -4,8 +4,11 @@ import App from './App.jsx'
 import './index.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import Store from './Redux/Store.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+	<Provider store={Store}>
     <App />
     <ToastContainer
 			position='top-right'
@@ -19,5 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 			pauseOnHover
 			theme='light'
 		/>
+		</Provider>
   </React.StrictMode>,
 )

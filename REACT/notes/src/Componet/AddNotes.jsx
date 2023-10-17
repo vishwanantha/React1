@@ -4,12 +4,18 @@ import * as Yup from 'yup'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import { UseDataContext } from './Context/DataContext';
 import { NotesDataContext } from './Context/NotesContext';
 import {toast} from 'react-toastify'
 import {Formik} from 'formik'
+import { useDispatch, useSelector } from 'react-redux';
+import { addData, deleteData, setData } from '../Redux/DataSlice';
 export default function AddNotes() {
-    let { data, setData } = useContext(UseDataContext);
+	const data = useSelector((state) => state.data.data);
+
+	let dispatch = useDispatch();
+
+
+    
 	let { API } = useContext(NotesDataContext);
 	const [initialValues, setInitialValues] =useState({
 		id: null,
@@ -32,7 +38,7 @@ export default function AddNotes() {
 			} else {
 				let res = await axios.get(API);
 				if (res.status === 200) {
-					setData(res.data);
+				dispatch(setData(res.data));
 				}
 			}
 		} catch (error) {
@@ -41,20 +47,15 @@ export default function AddNotes() {
 	};
 
 	const handleAddUser = async (values) => {
-		let newArray = [...data];
-		newArray.push(values);
-		toast.success('Added');
-		setData(newArray);
+	
+		dispatch(addData(values))
+		toast.success('Added')
 		try {
 			let res = await axios.post(API, values);
 
 			if (res.status === 201) {
 				getData();
-				setInitialValues({
-					id: null,
-					title: '',
-					content: '',
-				});
+			
 			}
 		} catch (error) {
 			console.log(error);
@@ -62,15 +63,14 @@ export default function AddNotes() {
 		}
 	};
 
-	const handleDelete = async (id, index) => {
-		let newArray = [...data];
-		newArray.splice(index, 1);
-		setData(newArray);
-		toast.success('Deleted');
+	const handleDelete = async (id, values) => {
+		dispatch(deleteData(values));
+
 		try {
 			let res = await axios.delete(`${API}/${id}`);
 			if (res.status === 200) {
 				getData();
+				toast.success('Deleted');
 			}
 		} catch (error) {
 			toast.error('Error Occurred');
@@ -93,13 +93,14 @@ export default function AddNotes() {
 			let res = await axios.put(`${API}/${id}`, values);
 
 			if (res.status === 200) {
-				getData();
-				toast.success('Updated');
 				setInitialValues({
 					id: null,
 					title: '',
 					content: '',
 				});
+
+				toast.success('Updated');
+				getData();
 			}
 		} catch (error) {
 			toast.error('Error Occurred');
@@ -115,7 +116,6 @@ export default function AddNotes() {
 				<div className='text-blue-950 opacity-80 text-3xl pt-5 ps-6 font-semibold'>
 					Add a Note
 				</div>
-
 				<Formik
 					enableReinitialize={true}
 					initialValues={initialValues}
@@ -190,10 +190,11 @@ export default function AddNotes() {
 				</Formik>
 			</div>
 
+			{/* my Notes */}
 
 			<div className='text-blue-950  mt-6'>
 				<div className='flex items-center gap-3 opacity-85 mb-2'>
-					<DescriptionOutlinedIcon/>
+					<DescriptionOutlinedIcon />
 					<h1 className='text-2xl font-semibold'>My Notes</h1>
 				</div>
 				<div className='text-sm text-gray-600 font-semibold mb-2 opacity-80'>
@@ -217,7 +218,7 @@ export default function AddNotes() {
 									/>
 									<DeleteOutlineOutlinedIcon
 										className='me-2 cursor-pointer'
-										onClick={() => handleDelete(e.id, i)}
+										onClick={() => handleDelete(e.id, e)}
 									/>
 								</div>
 							</div>
@@ -231,5 +232,5 @@ export default function AddNotes() {
 				</div>
 			</div>
 		</>
-    )
-                    }
+	)
+					}
